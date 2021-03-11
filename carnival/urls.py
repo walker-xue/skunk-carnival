@@ -17,9 +17,28 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.urls import path
 from user import views
+from django.shortcuts import render
+
+
+def homepage(request):
+    return render(request, 'home.html')
+
+
+def page_not_found(request):
+    return render(request, '404.html')
+
+
+def server_error(request):
+    return render(request, '500.html')
+
+
+def bad_request(request):
+    return render(request, '500.html')
+
 
 urlpatterns = [
+    path('', homepage),
     path('admin/', admin.site.urls),
     path('hello/', views.hello),
-    url(r'^user/', include('user.urls'))
+    url(r'^user/', include('user.urls')),
 ]
